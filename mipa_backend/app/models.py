@@ -5,12 +5,9 @@ from django.db import models
 
 # Create your models here.
 class Challenge(models.Model):
-    created = models.DateTimeField(auto_now_add=True)
-    title = models.CharField(max_length=100, blank=True, default='')
-    code = models.TextField()
-    linenos = models.BooleanField(default=False)
-    title = models.CharField(max_length=50)
-    content = models.TextField()
+    title = models.CharField(max_length=100)
+    category = models.TextField()
+    difficulty = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -18,4 +15,4 @@ class Challenge(models.Model):
         return self.title
 
     class Meta:
-        ordering = ('created',)
+        ordering = ('created_at',)

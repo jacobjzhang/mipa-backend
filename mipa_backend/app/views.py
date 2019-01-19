@@ -9,14 +9,15 @@ from .models import Challenge
 def challenges_list(request):
     MAX_OBJECTS = 20
     challenges = Challenge.objects.all()[:MAX_OBJECTS]
-    data = {"challenges": list(challenges.values("question", "created_by", "pub_date"))}
+    data = {"challenges": list(challenges.values("title", "category", "difficulty", "created_at"))}
     return JsonResponse(data)
 
 def challenges_detail(request, pk):
     challenge = get_object_or_404(Challenge, pk=pk)
     data = {"challenge": {
-      "question": challenge.question,
-      "created_by": challenge.created_by,
-      "pub_date": challenge.pub_date
+      "title": challenge.title,
+      "category": challenge.category,
+      "difficulty": challenge.difficulty,      
+      "created_at": challenge.created_by
     }}
     return JsonResponse(data)
