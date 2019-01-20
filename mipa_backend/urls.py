@@ -20,6 +20,6 @@ from .app.views import challenges_list, challenges_detail
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    path("challenges/", challenges_list, name="challenges_list"),
+    path("challenges/", challenges_list.as_view()),
     path("challenges/<int:pk>/", challenges_detail, name="challenges_detail")
 ]
