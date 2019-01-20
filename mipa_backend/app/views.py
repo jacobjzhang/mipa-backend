@@ -4,8 +4,8 @@ from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from rest_framework import generics
 
-from .models import Challenge
-from .serializers import ChallengeSerializer
+from .models import Challenge, Question
+from .serializers import ChallengeSerializer, QuestionSerializer
 
 # Create your views here.
 class challenges_list(generics.ListAPIView):
@@ -13,12 +13,14 @@ class challenges_list(generics.ListAPIView):
     queryset = Challenge.objects.all()[:MAX_OBJECTS]
     serializer_class = ChallengeSerializer
 
-def challenges_detail(request, pk):
-    challenge = get_object_or_404(Challenge, pk=pk)
-    data = {"challenge": {
-      "title": challenge.title,
-      "category": challenge.category,
-      "difficulty": challenge.difficulty,      
-      "created_at": challenge.created_by
-    }}
-    return JsonResponse(data)
+class challenges_detail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Challenge.objects.all()
+    serializer_class = ChallengeSerializer
+
+class questions_list(generics.ListAPIView):
+    queryset = Question.objects.all()
+    serializer_class = QuestionSerializer
+
+class questions_detail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Question.objects.all()
+    serializer_class = QuestionSerializer
