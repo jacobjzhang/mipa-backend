@@ -19,7 +19,7 @@ class challenges_detail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Challenge.objects.all()
     serializer_class = ChallengeSerializer
 
-class questions_list(generics.ListAPIView):
+class questions_list(generics.ListCreateAPIView):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
 
