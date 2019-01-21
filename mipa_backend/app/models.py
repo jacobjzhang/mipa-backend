@@ -24,13 +24,13 @@ class Question(models.Model):
     challenge = models.ForeignKey(Challenge, related_name='questions', on_delete=None)
     kind = models.CharField(max_length=100)
     question = models.TextField()
-    code = models.TextField(blank=True)
-    options = models.TextField(blank=True)
+    code = models.TextField(blank=True, null=True)
+    options = models.TextField(blank=True, null=True)
     solution = models.TextField()
-    hint = models.TextField(blank=True)    
+    hint = models.TextField(blank=True, null=True)    
     category = models.CharField(max_length=200)
-    questionImage = models.CharField(max_length=300, blank=True)
-    hintImage = models.CharField(max_length=300, blank=True)
+    questionImage = models.CharField(max_length=300, blank=True, null=True)
+    hintImage = models.CharField(max_length=300, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -42,9 +42,9 @@ class Question(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.TextField(max_length=500, blank=True)
-    location = models.CharField(max_length=30, blank=True)
-    current_score = models.IntegerField(blank=True)
+    bio = models.TextField(max_length=500, blank=True, null=True)
+    location = models.CharField(max_length=30, blank=True, null=True)
+    current_score = models.IntegerField(blank=True, null=True)
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
