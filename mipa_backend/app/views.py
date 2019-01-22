@@ -10,7 +10,7 @@ from .models import Challenge, Question, Profile
 from .serializers import ChallengeSerializer, QuestionSerializer, ProfileSerializer
 
 # Create your views here.
-class challenges_list(generics.ListAPIView):
+class challenges_list(generics.ListCreateAPIView):
     MAX_OBJECTS = 20
     queryset = Challenge.objects.all()[:MAX_OBJECTS]
     serializer_class = ChallengeSerializer
