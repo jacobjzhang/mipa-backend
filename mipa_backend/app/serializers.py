@@ -15,7 +15,7 @@ class ChallengeSerializer(serializers.ModelSerializer):
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
-        fields = ("user", "bio", "location", "current_score",)
+        fields = ("id", "user", "bio", "location", "current_score",)
         model = models.Profile
 
 class ChallengeCompletionSerializer(serializers.ModelSerializer):
