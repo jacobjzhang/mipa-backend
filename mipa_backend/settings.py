@@ -140,4 +140,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'mipa_backend/app/static')
-STATIC_URL = '/static/'
+STATIC_URL = 'https://storage.googleapis.com/mipa-backend/static/'

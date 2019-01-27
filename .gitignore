@@ -92,6 +92,7 @@ ENV/
 db.sqlite3
 
 app.yaml
+mipa_backend/app/static
 
 *.swp
 *.swo

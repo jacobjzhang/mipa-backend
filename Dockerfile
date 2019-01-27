@@ -8,6 +8,6 @@ ENV VIRTUAL_ENV /env
 ENV PATH /env/bin:$PATH
 ADD requirements.txt /app/
 RUN pip install -r requirements.txt
-ADD . /app/
 CMD exec python manage.py collectstatic
+ADD . /app/
 CMD exec gunicorn -b :$PORT mipa_backend.wsgi
