@@ -17,3 +17,11 @@
 __pycache__/
 # Ignored by the build system
 /setup.cfg
+
+# skip_files
+^(.*/)?#.*#$
+^(.*/)?.*~$
+^(.*/)?.*\.py[co]$
+^(.*/)?.*/RCS/.*$
+^(.*/)?\..*$
+^env/.*$
