@@ -5,9 +5,10 @@ from django.http import JsonResponse
 from rest_framework import generics, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+import pdb
 
-from .models import Challenge, Question, Profile
-from .serializers import ChallengeSerializer, QuestionSerializer, ProfileSerializer
+from .models import Challenge, Question, Profile, ChallengeCompletion
+from .serializers import ChallengeSerializer, QuestionSerializer, ProfileSerializer, ChallengeCompletionSerializer
 
 # Create your views here.
 class challenges_list(generics.ListCreateAPIView):
@@ -51,3 +52,18 @@ def profile_detail(request, pk):
     elif request.method == 'DELETE':
         profile.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class challenge_completion_list(generics.ListCreateAPIView):
+    queryset = ChallengeCompletion.objects.all()
+    serializer_class = ChallengeCompletionSerializer
+
+    def create(self, request, *args, **kwargs):
+        profile = Profile.objects.get(pk=request.POST['profile'])
+        new_score = profile.current_score + int(request.POST['points_received'])
+        profile.current_score = new_score
+
+        try:
+          profile.save(update_fields=["current_score"])
+          return super().create(request, *args, **kwargs)
+        except:
+          return Response(status=status.HTTP_404_NOT_FOUND)

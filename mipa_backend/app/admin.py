@@ -2,10 +2,11 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
-from .models import Challenge, Question, Profile
+from .models import Challenge, Question, Profile, ChallengeCompletion
 
 # Register your models here.
 
 admin.site.register(Challenge)
 admin.site.register(Question)
 admin.site.register(Profile)
+admin.site.register(ChallengeCompletion)

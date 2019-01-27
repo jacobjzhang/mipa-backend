@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.urls import path
 from django.contrib import admin
-from .app.views import challenges_list, challenges_detail, questions_list, questions_detail
+from .app.views import challenges_list, challenges_detail, questions_list, questions_detail, challenge_completion_list
 from .app import views
 
 urlpatterns = [
@@ -25,5 +25,6 @@ urlpatterns = [
     path("challenges/<int:pk>/", challenges_detail.as_view()),
     path("questions/", questions_list.as_view()),
     path("questions/<int:pk>/", questions_detail.as_view()),
-    path("profiles/<int:pk>/", views.profile_detail)
+    path("profiles/<int:pk>/", views.profile_detail),
+    path("challenge_completions/", challenge_completion_list.as_view())
 ]
