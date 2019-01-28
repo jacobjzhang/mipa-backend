@@ -96,3 +96,4 @@ mipa_backend/app/static
 
 *.swp
 *.swo
+.DS_Store

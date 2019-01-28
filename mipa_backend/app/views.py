@@ -64,6 +64,6 @@ class challenge_completion_list(generics.ListCreateAPIView):
 
         try:
           profile.save(update_fields=["current_score"])
-          return super().create(request, *args, **kwargs)
+          return super(challenge_completion_list, self).create(request, *args, **kwargs)
         except:
           return Response(status=status.HTTP_404_NOT_FOUND)
