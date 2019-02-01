@@ -13,12 +13,14 @@ class ChallengeSerializer(serializers.ModelSerializer):
         fields = ("id", "title", "category", "difficulty", "questions", "created_at",)
         model = models.Challenge
 
-class ProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        fields = ("id", "user", "bio", "location", "current_score",)
-        model = models.Profile
-
 class ChallengeCompletionSerializer(serializers.ModelSerializer):
     class Meta:
         fields = ("id", "profile", "challenge", "points_received", "created_at",)
         model = models.ChallengeCompletion
+
+class ProfileSerializer(serializers.ModelSerializer):
+    challenge_completions = ChallengeCompletionSerializer(many=True, read_only=True)
+
+    class Meta:
+        fields = ("id", "user", "bio", "location", "current_score", "challenge_completions",)
+        model = models.Profile

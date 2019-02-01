@@ -7,6 +7,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 import pdb
 
+from .md_to_json import MdToJson
 from .models import Challenge, Question, Profile, ChallengeCompletion
 from .serializers import ChallengeSerializer, QuestionSerializer, ProfileSerializer, ChallengeCompletionSerializer
 
@@ -19,6 +20,10 @@ class challenges_list(generics.ListCreateAPIView):
 class challenges_detail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Challenge.objects.all()
     serializer_class = ChallengeSerializer
+
+    def get(self, request, *args, **kwargs):
+        data = MdToJson().json_result()
+        return Response(data=data, status=status.HTTP_200_OK)    
 
 class questions_list(generics.ListCreateAPIView):
     queryset = Question.objects.all()
