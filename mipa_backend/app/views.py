@@ -22,7 +22,8 @@ class challenges_detail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ChallengeSerializer
 
     def get(self, request, *args, **kwargs):
-        data = MdToJson().json_result()
+        slug = kwargs['pk']
+        data = MdToJson(slug).json_result()
         return Response(data=data, status=status.HTTP_200_OK)    
 
 class questions_list(generics.ListCreateAPIView):

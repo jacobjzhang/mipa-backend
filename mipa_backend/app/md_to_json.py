@@ -7,14 +7,18 @@ accepted_fields = ['id', 'title', 'categories', 'difficulty', 'question', 'solut
 could_have_code = ['question', 'solution', 'solutionCode']
 
 class MdToJson:
+    def __init__(self, slug):
+        self.slug = slug
+
     def json_result(self):
         module_dir = os.path.dirname(__file__)  # get current directory
-        file_path = os.path.join(module_dir, '../base_challenges/validate_a_bst.md')
+        file_path = os.path.join(module_dir, '../base_challenges/' + self.slug + '.md')
         challenge_file = open(file_path)
         hints = challenge_file.read()
         hints = hints[2:] # pop first #_s bc it does not get split
-        sections = re.split(r'\n\n#\s', hints)
-
+        # main split between h1s are 2 newlines and then 1 hash with a space
+        sections = re.split(r'\n\n#\s', hints) 
+        
         dict = {}
         for sect in sections:
             end_of_key = re.search(r'\n', sect).end()
