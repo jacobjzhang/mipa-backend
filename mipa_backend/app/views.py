@@ -6,6 +6,7 @@ from rest_framework import generics, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 import pdb
+import os
 
 from .md_to_json import MdToJson
 from .models import Challenge, Question, Profile, ChallengeCompletion
@@ -16,6 +17,12 @@ class challenges_list(generics.ListCreateAPIView):
     MAX_OBJECTS = 20
     queryset = Challenge.objects.all()[:MAX_OBJECTS]
     serializer_class = ChallengeSerializer
+
+    def get(self, request, *args, **kwargs):
+        module_dir = os.path.dirname(__file__)  # get current directory
+        file_path = os.path.join(module_dir, '../base_challenges/')
+        challenge_list = os.listdir(file_path)
+        return Response(data=challenge_list, status=status.HTTP_200_OK) 
 
 class challenges_detail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Challenge.objects.all()
