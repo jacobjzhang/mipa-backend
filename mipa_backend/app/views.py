@@ -20,7 +20,7 @@ class challenges_list(generics.ListCreateAPIView):
 
     def get(self, request, *args, **kwargs):
         module_dir = os.path.dirname(__file__)  # get current directory
-        file_path = os.path.join(module_dir, '../base_challenges/')
+        file_path = os.path.join(module_dir, '../curriculum/challenges/')
         challenge_list = os.listdir(file_path)
         return Response(data=challenge_list, status=status.HTTP_200_OK) 
 

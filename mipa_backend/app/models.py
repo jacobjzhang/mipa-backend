@@ -11,6 +11,7 @@ class Challenge(models.Model):
     title = models.CharField(max_length=100)
     category = models.TextField()
     difficulty = models.IntegerField(default=0)
+    slug = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

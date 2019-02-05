@@ -4,15 +4,13 @@ import pdb
 import os
 
 accepted_fields = ['id', 'title', 'categories', 'difficulty', 'question', 'solution', 'solutionCode', 'hints', 'tests']
-could_have_code = ['question', 'solution', 'solutionCode']
-
 class MdToJson:
     def __init__(self, slug):
         self.slug = slug
 
     def json_result(self):
         module_dir = os.path.dirname(__file__)  # get current directory
-        file_path = os.path.join(module_dir, '../base_challenges/' + self.slug + '.md')
+        file_path = os.path.join(module_dir, '../curriculum/challenges/' + self.slug + '.md')
         challenge_file = open(file_path)
         hints = challenge_file.read()
         hints = hints[2:] # pop first #_s bc it does not get split
