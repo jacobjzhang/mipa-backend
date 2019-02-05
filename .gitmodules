@@ -1,0 +1,3 @@
+[submodule "mipa_backend/curriculum"]
+	path = mipa_backend/curriculum
+	url = git@github.com:jacobjzhang/mipa-curriculum.git
